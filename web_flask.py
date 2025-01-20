@@ -9,8 +9,8 @@ https://huggingface.co/Helsinki-NLP/opus-mt-en-zh
 '''
 # torch.set_num_threads(4)
 device = 'cpu'
-tokenizer = AutoTokenizer.from_pretrained("shanxi_model")
-model = AutoModelForSeq2SeqLM.from_pretrained("shanxi_model").to(device)
+tokenizer = AutoTokenizer.from_pretrained("test_model")
+model = AutoModelForSeq2SeqLM.from_pretrained("test_model").to(device)
 with torch.inference_mode():
     model.eval()
 
@@ -30,6 +30,10 @@ def transaltion():
 if __name__ == '__main__':
     # 启动Flask应用，启用多线程来提高并发处理能力
     app.run(host='0.0.0.0', port=5153, threaded=True)
+
+#多进程启动
+# pip install gunicorn
+# gunicorn -w 4 app:app --bind 0.0.0.0:5153
 
 '''
 请求方式
